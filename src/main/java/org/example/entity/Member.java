@@ -5,8 +5,8 @@ import lombok.Getter;
 
 @Getter
 @Entity
-@Table(name ="member")
-public class Member extends BaseEntity{
+@Table(name = "member")
+public class Member extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -19,12 +19,11 @@ public class Member extends BaseEntity{
     private String password;
 
 
-
     public Member() {
 
     }
 
-    public Member(String email, String password){
+    public Member(String email, String password) {
         this.email = email;
         this.password = password;
     }

@@ -10,8 +10,6 @@ public class SignUpResponseDto {
     private final String email;
 
 
-
-
     public SignUpResponseDto(Long id, String email) {
         this.id = id;
         this.email = email;

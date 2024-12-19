@@ -24,14 +24,14 @@ public class HomeController {
     ) {
 
         // 쿠키에 값이 없으면 로그인 페이지로 이동 -> 로그인 X
-        if(userId == null) {
+        if (userId == null) {
             return "login";
         }
 
         // 실제 DB에 데이터 조회 후 결과가 없으면 로그인 페이지로 이동 -> 일치하는 회원정보 X
         MemberResponseDto loginUser = memberService.findById(userId);
 
-        if(loginUser == null) {
+        if (loginUser == null) {
             return "login";
         }
 

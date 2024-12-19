@@ -45,12 +45,13 @@ public class BoardService {
     }
 
     public void delete(Long id) {
-       Board findBoard =  boardRepository.findByIdOrElseThrow(id);
+        Board findBoard = boardRepository.findByIdOrElseThrow(id);
 
-       boardRepository.delete(findBoard);
+        boardRepository.delete(findBoard);
     }
+
     @Transactional
-    public BoardUpdateRequestDto update(Long id, BoardUpdateRequestDto boardUpdateRequestDto){
+    public BoardUpdateRequestDto update(Long id, BoardUpdateRequestDto boardUpdateRequestDto) {
         Board findBoard = boardRepository.findByIdOrElseThrow(id);
         findBoard.updateBoard(boardUpdateRequestDto.getTitle(), boardUpdateRequestDto.getContents());
         return new BoardUpdateRequestDto(findBoard.getTitle(), findBoard.getContent());
