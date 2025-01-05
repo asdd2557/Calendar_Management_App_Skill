@@ -8,6 +8,7 @@ import org.example.dto.LoginResponseDto;
 import org.example.dto.MemberResponseDto;
 import org.example.dto.SignUpResponseDto;
 import org.example.entity.Member;
+import org.example.exception.CustomValidationException;
 import org.example.repository.MemberRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,13 +29,21 @@ public class MemberService {
      * @return 회원가입 결과를 포함하는 DTO
      */
     public SignUpResponseDto signUp(String username, String password) {
-        // 새로운 Member 객체 생성
-        Member member = new Member(username, password);
+        if (username == null || username.isBlank()) {
+            throw new CustomValidationException("ERR003", "Email cannot be null or empty");
+        }
 
-        // Member 저장
+        if (password == null || password.length() < 6) {
+            throw new CustomValidationException("ERR004", "Password must be at least 6 characters long");
+        }
+
+        if (memberRepository.findMemberByEmail(username).isPresent()) {
+            throw new CustomValidationException("ERR005", "Email is already registered");
+        }
+
+        Member member = new Member(username, password);
         Member savedMember = memberRepository.save(member);
 
-        // 저장된 정보를 DTO로 변환하여 반환
         return new SignUpResponseDto(savedMember.getId(), savedMember.getEmail());
     }
 
