@@ -1,4 +1,4 @@
-
+# ERD URL: https://www.erdcloud.com/d/sKYFNWfiBu76SYhSj
 # API Specification
 
 ## Board API
